@@ -8,4 +8,3 @@ import validator.fone_number as fone_number
 import validator.passport as passport
 import validator.password as password
 import validator.url as url
-import validator.rg_id as rg_id

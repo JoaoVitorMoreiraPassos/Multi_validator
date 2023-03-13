@@ -35,7 +35,7 @@ class CreditCard:
     
     def __repr__(self):
         if len(self._cards) > 1:
-            return f"{list(map(lambda x: f'Cards: {x}', self.cards.values()))}"
+            return f"Cards: {list(map(lambda x: f'{x}', self.cards.values()))}"
         if len(self.cards) == 1:
             return f"Cards: {self.cards[0]}"
         return f"Cards: {self.cards}"

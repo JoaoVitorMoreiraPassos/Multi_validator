@@ -32,10 +32,10 @@ class CNPJ:
     
     def __repr__(self):
         if len(self._cnpjs) > 1:
-            return f"{list(map(lambda x: f'CPF: {x}', self.cnpjs.values()))}"
+            return f"CNPJs: {list(map(lambda x: f'{x}', self.cnpjs.values()))}"
         if len(self.cnpjs) == 1:
-            return f"CPF: {self.cnpjs[0]}"
-        return f"CPF: {self.cnpjs}"
+            return f"CNPJ: {self.cnpjs[0]}"
+        return f"CNPJs: {self.cnpjs}"
     
     def __len__(self):
         return len(self.cnpjs)

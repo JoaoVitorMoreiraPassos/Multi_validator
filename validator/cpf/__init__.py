@@ -35,10 +35,10 @@ class CPF(Sequence):
     def __repr__(self):
         
         if len(self._cpfs) > 1:
-            return f"{list(map(lambda x: f'CPF: {x}', self.cpfs.values()))}"
+            return f"CPFs: {list(map(lambda x: f'{x}', self.cpfs.values()))}"
         if len(self.cpfs) == 1:
             return f"CPF: {self._cpfs[0]}"
-        return f"CPF: {self._cpfs}"
+        return f"CPFs: {self._cpfs}"
     
     def __len__(self):
         return len(self._cpfs)

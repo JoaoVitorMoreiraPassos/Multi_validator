@@ -22,10 +22,30 @@ for i in cnpj:
     
 print("------------------")
 
-credit_card = vlt.bank_card.read("5502099573557190")
-print(credit_card)
-credit_card.generate()
-credit_card.generate()
-credit_card.generate()
-for i in credit_card:
-    print(i)
+date = vlt.date.Data("08-04-2021")
+print(date)
+
+print("------------------")
+
+email = vlt.email.Email("moreirapassosj@gmail.com")
+print(email)
+print("------------------")
+
+fone = vlt.fone_number.TelPhone("11999999999")
+fone.generate()
+print(fone)
+
+print("------------------")
+
+passport = vlt.passport.PassPort("AB1234567")
+print(passport)
+
+print("------------------")
+password = vlt.password.PassWord("123456789")
+password.generate(level=3)
+print( password )
+print("------------------")
+url = vlt.url.URL("https://www.google.com")
+url.generate("google", 10)
+print(url)
+
