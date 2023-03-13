@@ -26,8 +26,8 @@ class PassPort(Sequence):
     def passports(self, args):
         try:
             number = self.validate(args)[1]
-        except ValueError:
-            raise ValueError("Formato inválido")
+        except Exception as E:
+            print(str(E))
         else:
             self._passports[self._index] = number
             self._index += 1
@@ -61,8 +61,8 @@ class PassPort(Sequence):
     def add(self, passport):
         try:
             self.passports = passport
-        except ValueError:
-            raise ValueError("Formato inválido")
+        except Exception as E:
+            print(str(E))
     
     def generate(self):
         """
@@ -75,7 +75,7 @@ class PassPort(Sequence):
         letras = "".join(random.choices(string.ascii_uppercase, k=2))
         numeros = "".join(random.choices(string.digits, k=7))
         self.add(letras + numeros)
-        return True
+        return letras + numeros
         
     def validate(self, passport):
         """

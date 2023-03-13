@@ -1,9 +1,8 @@
 from datetime import datetime
-import random
 from collections.abc import Sequence
 
 
-class Data(Sequence):
+class Date(Sequence):
     def __init__(self, cpf = None):
         if cpf is None:
             self._datas = {}
@@ -63,9 +62,6 @@ class Data(Sequence):
             self.datas = date
         except ValueError:
             raise ValueError("Formato inválido")
-    
-    def generate(self):
-        ...
         
     def validate(self, date):
         try:
@@ -84,9 +80,9 @@ class Data(Sequence):
                     raise ValueError("Formato inválido")
 
 
-def read(date : str) -> Data:
+def read(date : str) -> Date:
     try:
-        obj = Data(date)  
+        obj = Date(date)  
         return obj
     except ValueError:
         raise ValueError("Formato inválido")

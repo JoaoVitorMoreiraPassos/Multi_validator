@@ -1,6 +1,9 @@
 import validator as vlt
 
 
+fake = vlt.FakeData(10)
+print(fake)
+
 cpf = vlt.cpf.read("06906496301")
 print(cpf)
 cpf.generate()
@@ -22,7 +25,7 @@ for i in cnpj:
     
 print("------------------")
 
-date = vlt.date.Data("08-04-2021")
+date = vlt.date.Date("08-04-2021")
 print(date)
 
 print("------------------")
@@ -32,7 +35,6 @@ print(email)
 print("------------------")
 
 fone = vlt.fone_number.TelPhone("11999999999")
-fone.generate()
 print(fone)
 
 print("------------------")
@@ -48,4 +50,3 @@ print("------------------")
 url = vlt.url.URL("https://www.google.com")
 url.generate("google", 10)
 print(url)
-

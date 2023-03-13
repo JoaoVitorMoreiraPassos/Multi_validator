@@ -74,6 +74,7 @@ class CNPJ:
             cnpj = [calculate_special_digit(cnpj)] + cnpj                           
         cnpj = '%s%s.%s%s%s.%s%s%s/%s%s%s%s-%s%s' % tuple(cnpj[::-1])
         self.cnpjs = cnpj
+        return cnpj
     
     def validate(self, cnpj):
         # Verifica a formatação do cnpj

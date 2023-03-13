@@ -1,5 +1,5 @@
-import random
 import string
+import random
 from collections.abc import Sequence
 
 
@@ -90,7 +90,7 @@ class PassWord(Sequence):
         
         senha = ''.join(random.choice(caracters) for i in range(lenght))
         self.add(senha)
-        return True
+        return senha
         
     def validate(self, password):
         """

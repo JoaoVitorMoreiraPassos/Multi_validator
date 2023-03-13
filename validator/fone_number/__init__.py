@@ -14,8 +14,7 @@ class TelPhone(Sequence):
             self._numbers = {0: request[1]}
             self._index = 1
         self._next_index = 0
-        
-        
+    
     @property
     def numbers(self):
         return self._numbers
@@ -62,9 +61,6 @@ class TelPhone(Sequence):
         except ValueError:
             raise ValueError("Formato inválido")
     
-    def generate(self):
-        ...
-        
     def validate(self, number):
         """
         Função que valida um número de telefone e retorna True ou False.

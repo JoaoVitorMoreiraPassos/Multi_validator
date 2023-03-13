@@ -72,6 +72,7 @@ class CPF(Sequence):
             cpf.append(11 - val if val > 1 else 0)                                  
         cpf = '%s%s%s.%s%s%s.%s%s%s-%s%s' % tuple(cpf)
         self.cpfs = cpf
+        return cpf
         
     def validate(self, cpf):
         # Verifica a formatação do CPF

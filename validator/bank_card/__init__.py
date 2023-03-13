@@ -92,7 +92,7 @@ class CreditCard:
             print(E)
         else:
             self.cards = new_number
-            
+        return new_number
     
     def validate(self, card_number):
         def card_tag(number: str):
