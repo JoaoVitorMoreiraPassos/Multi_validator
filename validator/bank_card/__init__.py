@@ -1,10 +1,48 @@
-import re
 import random
-
+import re
 
 
 class CreditCard:
+    """
+    Classe que representa os números de cartão.
+
+    Parâmetros
+    ----------
+    card_number: str
+        Número de cartão a ser validado, com ou sem o prefixo do Brasil, mas com o DDD.
+    index: int
+        Índice do dicionário de números de cartão.
+
+    Métodos
+    -------
+    validate(card_number):
+        Função que valida um número de cartão e retorna True ou False.
+    generate():
+        Gera um número de cartão válido.
+    add(card_number):
+        Adiciona um número de cartão ao dicionário de números de cartão.
+    __repr__():
+        Método que retorna a representação do objeto.
+    __len__():
+        Método que retorna o tamanho do dicionário de números de cartão.
+    __getitem__(index):
+        Método que retorna o número de cartão de acordo com o índice.
+    __iter__():
+        Método que retorna o iterador do dicionário de números de cartão.
+    """
     def __init__(self, card_number = None):
+        """
+        Construtor da classe.
+
+        Parâmetros
+        ----------
+            card_number: str
+                Número de cartão a ser validado.
+
+        Returns
+        -------
+            None
+        """
         if card_number is None:
             self._cards = {}
             self._index = 0
@@ -34,6 +72,17 @@ class CreditCard:
             self._index += 1
     
     def __repr__(self):
+        """
+        Método que retorna a representação do objeto.
+
+        Parametros
+        ----------
+            None
+
+        Returns
+        -------
+            str: Representação do objeto.
+        """
         if len(self._cards) > 1:
             return f"Cards: {list(map(lambda x: f'{x}', self.cards.values()))}"
         if len(self.cards) == 1:
@@ -41,17 +90,62 @@ class CreditCard:
         return f"Cards: {self.cards}"
     
     def __len__(self):
+        """
+        Método que retorna o tamanho do dicionário de cartões de crédito.
+
+        Parametros
+        ----------
+            None
+
+        Returns
+        -------
+            int: Tamanho do dicionário de cartões de crédito.
+        """
         return len(self.cards)
     
     def __getitem__(self, index):
+        """
+        Método que retorna o número de cartão de acordo com o índice.
+
+        Parametros
+        ----------
+            index: int
+                Índice do dicionário de números de cartões de crédito.
+
+        Returns
+        -------
+            str: Número de cartão.
+        """
         if index >= len(self.cards):
             raise IndexError
         return self.cards[index]
     
     def __iter__(self):
+        """
+        Retorna o iterador do dicionário de cartões de crédito.
+
+        Parametros
+        ----------
+            None
+
+        Returns
+        -------
+            self: Iterador do dicionário de cartões de crédito.
+        """
         return self
     
     def __next__(self):
+        """
+        Retorna o próximo número do cartão do dicionário de cartões.
+
+        Parametros
+        ----------
+            None
+
+        Returns
+        -------
+            str: Próximo número do cartão do dicionário de números de cartão.
+        """
         if self._next_index >= self._index:
             self._next_index = 0
             raise StopIteration
@@ -59,14 +153,47 @@ class CreditCard:
         return self.cards[self._next_index - 1]
     
     def add(self, card_number):
+        """
+        Adiciona um número de cartão ao dicionário de números de cartão.
+
+        Parâmetros
+        ----------
+            numero : str
+                Número de cartão a ser validado, com ou sem o prefixo do Brasil, mas com o DDD.
+
+        Retorno
+        -------
+            None
+        """
         try:
             self.cards = card_number
         except ValueError:
             raise ValueError("Formato inválido")
     
-    def generate(self, card_type: str = None):
+    def generate(self):
+        """
+        Função que gera um número de cartão.
+
+        Parâmetros
+        ----------
+            None
+
+        Retorno
+        -------
+            str: Número de cartão gerado.
+        """
         def search_combination():
-            numbers = None
+            """
+            Função busca por uma combinação de números que resulte em um número de cartão válido.
+
+            Parâmetros
+            ----------
+                None
+
+            Retorno
+            -------
+                tuple: Tupla contendo uma lista de números operados e uma lista de números fixos.
+            """
             fixos = [random.randint(0, 9) for _ in range(8)]
             while True:
                 operados = [(random.randint(0, 9)) for _ in range(8)]
@@ -95,7 +222,30 @@ class CreditCard:
         return new_number
     
     def validate(self, card_number):
+        """
+        Função que valida um número de cartão.
+            
+        Parâmetros
+        ----------
+            card_number : str
+                Número de cartão a ser validado.
+
+        Retorno
+        -------
+            tuple: (True, card_number)        
+        """
         def card_tag(number: str):
+            """
+            Função que identifica o tipo de cartão de crédito.
+
+            Parâmetros
+            ----------
+                number : str
+                
+            Retorno
+            -------
+                str: Tipo de cartão de crédito.
+            """
             if number[0] == "4":
                 return "Visa"
             elif number[:2] in ["51", "52", "53", "54", "55"]:
@@ -141,6 +291,15 @@ class CreditCard:
         return checkSum % 10 == 0, (card_type, temp)
 
 def read(card_number : str) -> CreditCard:
+    """
+    Método que lê um número de cartão de crédito e retorna um objeto da classe CreditCard.
+
+            Parâmetros
+                    card_number (str): Número de cartão a ser validado.
+
+            Retorno
+                    (CreditCard): Objeto da classe CreditCard.
+    """
     try:
         obj = CreditCard(card_number)  
         return obj
