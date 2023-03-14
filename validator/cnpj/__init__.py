@@ -252,35 +252,6 @@ class CNPJ:
         if len(numbers) != 14 or len(set(numbers)) == 1:
             raise ValueError("Formato inválido")
 
-        # Calcula o dígito verificador do cnpj
-        numbers = numbers[:-2]
-        new_cnpj = numbers + [calculate_special_digit(numbers)]
-        numbers = numbers + [calculate_special_digit(new_cnpj)]
-
-        # Verifica se o cnpj é válido
-        if numbers == [int(digit) for digit in cnpj if digit.isdigit()]:
-            return True, cnpj
-        raise ValueError("Formato inválido")
-        # Verifica a formatação do cnpj
-        temp = list(map(lambda x: x if x.isdigit() else False, list(cnpj)))
-        if all(temp):
-            temp.insert(2, ".")
-            temp.insert(6, ".")
-            temp.insert(10, "/")
-            temp.insert(15, "-")
-            cnpj = "".join(list(map(lambda x: str(x), temp)))
-            del temp
-
-        if not re.match(r"\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}", cnpj):
-            raise ValueError("Formato inválido")
-
-        # Obtém apenas os números do cnpj, ignorando pontuações
-        numbers = [int(digit) for digit in cnpj if digit.isdigit()]
-
-        # Verifica se o cnpj possui 14 números ou se todos são iguais:
-        if len(numbers) != 14 or len(set(numbers)) == 1:
-            raise ValueError("Formato inválido")
-
         # Validação do primeiro dígito verificador:
         pesos = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
         sum_of_products = sum(a * b for a, b in zip(numbers[0:12], pesos))
